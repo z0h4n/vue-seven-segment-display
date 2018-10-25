@@ -1,6 +1,6 @@
 {
   "name": "vue-seven-segment-display",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A Seven Segment Display Component for Vue.js",
   "main": "index.js",
   "scripts": {
@@ -12,8 +12,16 @@
   },
   "keywords": [
     "vue",
+    "vue-component",
+    "vue component",
     "seven",
     "segment",
+    "7segment",
+    "7-segment",
+    "7 segment",
+    "sevensegment",
+    "seven-segment",
+    "seven segment",
     "component"
   ],
   "author": "z0h4n",
