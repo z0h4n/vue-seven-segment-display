@@ -1,0 +1,29 @@
+{
+  "name": "vue-seven-segment-display",
+  "version": "1.0.0",
+  "description": "A Seven Segment Display Component for Vue.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/z0h4n/vue-seven-segment-display.git"
+  },
+  "keywords": [
+    "vue",
+    "seven",
+    "segment",
+    "component"
+  ],
+  "author": "z0h4n",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/z0h4n/vue-seven-segment-display/issues"
+  },
+  "homepage": "https://github.com/z0h4n/vue-seven-segment-display#readme",
+  "dependencies": {
+    "lodash.assign": "^4.2.0",
+    "lodash.get": "^4.4.2"
+  }
+}
