@@ -1,29 +1,65 @@
 <template>
   <div :style="containerStyle">
     <!-- A -->
-    <div :style="[horizontalSegmentStyle, onoff('a')]"></div>
+    <div :style="[horizontalSegmentStyle, onoff('a')]">
+      <template v-if="!rounded">
+        <segment-endpoint type="left" :size="segmentHeight * 0.5" />
+        <segment-endpoint type="right" :size="segmentHeight * 0.5" />
+      </template>
+    </div>
     <div :style="verticalSegmentContainerStyle">
       <!-- F -->
-      <div :style="[verticalSegmentStyle, { left: '0px' }, onoff('f')]"></div>
+      <div :style="[verticalSegmentStyle, { left: '0px' }, onoff('f')]">
+        <template v-if="!rounded">
+          <segment-endpoint type="top" :size="segmentHeight * 0.5" />
+          <segment-endpoint type="bottom" :size="segmentHeight * 0.5" />
+        </template>
+      </div>
       <!-- B -->
-      <div :style="[verticalSegmentStyle, { right: '0px' }, onoff('b')]"></div>
+      <div :style="[verticalSegmentStyle, { right: '0px' }, onoff('b')]">
+        <template v-if="!rounded">
+          <segment-endpoint type="top" :size="segmentHeight * 0.5" />
+          <segment-endpoint type="bottom" :size="segmentHeight * 0.5" />
+        </template>
+      </div>
     </div>
     <!-- G -->
-    <div :style="[horizontalSegmentStyle, onoff('g')]"></div>
+    <div :style="[horizontalSegmentStyle, onoff('g')]">
+      <template v-if="!rounded">
+        <segment-endpoint type="left" :size="segmentHeight * 0.5" />
+        <segment-endpoint type="right" :size="segmentHeight * 0.5" />
+      </template>
+    </div>
     <div :style="verticalSegmentContainerStyle">
       <!-- E -->
-      <div :style="[verticalSegmentStyle, { left: '0px' }, onoff('e')]"></div>
+      <div :style="[verticalSegmentStyle, { left: '0px' }, onoff('e')]">
+        <template v-if="!rounded">
+          <segment-endpoint type="top" :size="segmentHeight * 0.5" />
+          <segment-endpoint type="bottom" :size="segmentHeight * 0.5" />
+        </template>
+      </div>
       <!-- C  -->
-      <div :style="[verticalSegmentStyle, { right: '0px' }, onoff('c')]"></div>
+      <div :style="[verticalSegmentStyle, { right: '0px' }, onoff('c')]">
+        <template v-if="!rounded">
+          <segment-endpoint type="top" :size="segmentHeight * 0.5" />
+          <segment-endpoint type="bottom" :size="segmentHeight * 0.5" />
+        </template>
+      </div>
     </div>
     <!-- D -->
-    <div :style="[horizontalSegmentStyle, onoff('d')]"></div>
+    <div :style="[horizontalSegmentStyle, onoff('d')]">
+      <template v-if="!rounded">
+        <segment-endpoint type="left" :size="segmentHeight * 0.5" />
+        <segment-endpoint type="right" :size="segmentHeight * 0.5" />
+      </template>
+    </div>
   </div>
 </template>
 
 <script>
 import get from "lodash.get";
 import assign from "lodash.assign";
+import SegmentEndPoint from "./SegmentEndPoint.vue";
 
 const DEFAULT_SEGMENT_MAP = {
   a: true,
@@ -49,6 +85,7 @@ const SEGMENT_MAP = {
 };
 
 export default {
+  components: { "segment-endpoint": SegmentEndPoint },
   props: {
     value: {
       type: String,
@@ -69,6 +106,10 @@ export default {
     offColor: {
       type: String,
       default: "transparent"
+    },
+    rounded: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -92,10 +133,11 @@ export default {
 
     horizontalSegmentStyle: function() {
       return {
-        borderRadius: `${this.segmentHeight}px`,
+        position: "relative",
         width: `${this.segmentWidth}px`,
         height: `${this.segmentHeight}px`,
-        margin: "0 auto"
+        margin: "0 auto",
+        borderRadius: `${this.rounded ? this.segmentHeight : 0}px`
       };
     },
 
@@ -110,9 +152,9 @@ export default {
     verticalSegmentStyle: function() {
       return {
         position: "absolute",
-        borderRadius: `${this.segmentWidth}px`,
         width: `${this.segmentHeight}px`,
-        height: "100%"
+        height: "100%",
+        borderRadius: `${this.rounded ? this.segmentHeight : 0}px`
       };
     },
 
@@ -126,8 +168,11 @@ export default {
 
   methods: {
     onoff: function(segmentName) {
+      const color = this.map[segmentName] ? this.onColor : this.offColor;
       return {
-        backgroundColor: this.map[segmentName] ? this.onColor : this.offColor
+        backgroundColor: color,
+        borderColor: color,
+        borderWidth: `${this.segmentHeight}px`
       };
     }
   }
