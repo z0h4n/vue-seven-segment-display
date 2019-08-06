@@ -153,7 +153,7 @@ export default {
 
   methods: {
     onoff(segmentName) {
-      var color = this.map[segmentName] ? this.onColor : this.offColor;
+      const color = this.map[segmentName] ? this.onColor : this.offColor;
       return {
         backgroundColor: color,
         borderColor: color,
