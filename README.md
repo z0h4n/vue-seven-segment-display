@@ -8,25 +8,17 @@
   <img src="image2.png">
 </p>
 
-### From NPM
-
 ```
-// Installation
 npm install --save vue-seven-segment-display
 
-// ESM Import
+// esm import
 import SevenSegmentDisplay from 'vue-seven-segment-display';
 
-// CJS Import
-const SevenSegmentDisplay = require('vue-seven-segment-display/dist/cjs');
-```
+// cjs import
+const SevenSegmentDisplay = require('vue-seven-segment-display');
 
-### Via script tag
-```
+// script tag import (window.SevenSegmentDisplay)
 <script src="https://unpkg.com/vue-seven-segment-display"></script>
-<script>
-  var component = window.SevenSegmentDisplay;
-</script>
 ```
 
 ### Usage
