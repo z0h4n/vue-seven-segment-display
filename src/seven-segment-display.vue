@@ -57,19 +57,7 @@
 </template>
 
 <script>
-import get from "lodash.get";
-import assign from "lodash.assign";
-import SegmentEndPoint from "./SegmentEndPoint.vue";
-
-const DEFAULT_SEGMENT_MAP = {
-  a: true,
-  b: true,
-  c: true,
-  d: true,
-  e: true,
-  f: true,
-  g: false
-};
+import segmentEndpoint from "./segment-endpoint.vue";
 
 const SEGMENT_MAP = {
   "0": { a: true, b: true, c: true, d: true, e: true, f: true, g: false },
@@ -85,10 +73,10 @@ const SEGMENT_MAP = {
 };
 
 export default {
-  components: { "segment-endpoint": SegmentEndPoint },
+  components: { "segment-endpoint": segmentEndpoint },
   props: {
     value: {
-      type: String,
+      type: [String, Number],
       default: "8"
     },
     segmentWidth: {
@@ -109,20 +97,20 @@ export default {
     },
     rounded: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
 
   computed: {
-    containerWidth: function() {
+    containerWidth() {
       return this.segmentWidth + this.segmentHeight * 2;
     },
 
-    containerHeight: function() {
+    containerHeight() {
       return this.segmentWidth * 2 + this.segmentHeight * 3;
     },
 
-    containerStyle: function() {
+    containerStyle() {
       return {
         position: "relative",
         display: "inline-block",
@@ -131,7 +119,7 @@ export default {
       };
     },
 
-    horizontalSegmentStyle: function() {
+    horizontalSegmentStyle() {
       return {
         position: "relative",
         width: `${this.segmentWidth}px`,
@@ -141,7 +129,7 @@ export default {
       };
     },
 
-    verticalSegmentContainerStyle: function() {
+    verticalSegmentContainerStyle() {
       return {
         position: "relative",
         width: "100%",
@@ -149,7 +137,7 @@ export default {
       };
     },
 
-    verticalSegmentStyle: function() {
+    verticalSegmentStyle() {
       return {
         position: "absolute",
         width: `${this.segmentHeight}px`,
@@ -158,17 +146,14 @@ export default {
       };
     },
 
-    map: function() {
-      return assign(
-        DEFAULT_SEGMENT_MAP,
-        get(SEGMENT_MAP, this.value.toString().toLowerCase(), {})
-      );
+    map() {
+      return SEGMENT_MAP[this.value.toString()] || SEGMENT_MAP["0"];
     }
   },
 
   methods: {
-    onoff: function(segmentName) {
-      const color = this.map[segmentName] ? this.onColor : this.offColor;
+    onoff(segmentName) {
+      var color = this.map[segmentName] ? this.onColor : this.offColor;
       return {
         backgroundColor: color,
         borderColor: color,
