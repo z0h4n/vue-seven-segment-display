@@ -1,11 +1,12 @@
 {
   "name": "vue-seven-segment-display",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A Seven Segment Display Component for Vue.js",
   "main": "dist/umd.js",
   "module": "dist/esm.js",
   "unpkg": "dist/web.js",
   "scripts": {
+    "prepublishOnly": "npm run build",
     "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
     "build:umd": "rollup --config rollup.config.js --format cjs --file dist/cjs.js",
     "build:es": "rollup --config rollup.config.js --format es --file dist/esm.js",
