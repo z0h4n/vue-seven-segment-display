@@ -8,33 +8,31 @@
   <img src="image2.png">
 </p>
 
-### Installation
+### From NPM
 
 ```
+// Installation
 npm install --save vue-seven-segment-display
-```
 
-### Registration
-
-main.js
-
-```
-import Vue from 'vue';
+// ESM Import
 import SevenSegmentDisplay from 'vue-seven-segment-display';
 
-Vue.use(SevenSegmentDisplay);
+// CJS Import
+const SevenSegmentDisplay = require('vue-seven-segment-display/dist/cjs');
+```
 
-new Vue({
-  ...
-});
+### Via script tag
+```
+<script src="https://unpkg.com/vue-seven-segment-display"></script>
+<script>
+  var component = window.SevenSegmentDisplay;
+</script>
 ```
 
 ### Usage
 
-Sample.vue
-
 ```  
-<seven-segment value="8" :rounded="true" :segment-width="25" :segment-height="5" on-color="#f00" off-color="transparent"/>
+<seven-segment value="8" :rounded="false" :segment-width="25" :segment-height="5" on-color="#f00" off-color="transparent"/>
 ```
 
 `value` or `:value`
@@ -42,7 +40,7 @@ Sample.vue
 - Use `:value={myValue}` to bind `value` prop to `myValue`
 
 `:rounded`
-- Boolean. Default is true.
+- Boolean. Default is false.
 - True makes segments appear rounded, false makes it appear pointy
 
 `:segment-width`
